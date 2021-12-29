@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import {useRouter} from 'next/router'
-
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 import {initializeApp} from 'firebase/app';
 import {getAnalytics} from 'firebase/analytics';
@@ -65,15 +65,18 @@ signInWithPopup(auth, provider)
         <h1 className={styles.title}>
           Welcome!
         </h1>
-        {/* put github icon */}
-        <button onClick={githubSignin} className={styles.btnGithub}>Sign in with Github</button>
+        <button onClick={githubSignin} className={styles.btnGithub}>
+          <div className={styles.flex}>
+            <div className={styles.mr}>
+            <GitHubIcon/>
+            </div>
+            <div>
+             Sign in with Github
+
+            </div>
+          </div>
+          </button>
       </main>
     </div>
   );
 }
-
-// Import the functions you need from the SDKs you need
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
