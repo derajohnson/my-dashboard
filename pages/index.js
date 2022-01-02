@@ -71,7 +71,7 @@ signInWithPopup(auth, provider)
             <GitHubIcon/>
             </div>
             <div>
-             Sign in with Github
+             Sign in with GitHub
 
             </div>
           </div>
