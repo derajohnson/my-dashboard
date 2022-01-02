@@ -1,58 +1,10 @@
-import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import {useRouter} from 'next/router'
-import GitHubIcon from '@mui/icons-material/GitHub';
+import Head from 'next/head';
+import {useState} from 'react';
 
-import {initializeApp} from 'firebase/app';
-import {getAnalytics} from 'firebase/analytics';
-import { getAuth, signInWithPopup, GithubAuthProvider } from "firebase/auth";
-
-export default function Home () {
-  const router = useRouter()
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: 'AIzaSyAq4-Ko92BeK7wue5yB2lOrv3DbgTwI2yY',
-  authDomain: 'my-dashboard-3ce89.firebaseapp.com',
-  projectId: 'my-dashboard-3ce89',
-  storageBucket: 'my-dashboard-3ce89.appspot.com',
-  messagingSenderId: '657263501096',
-  appId: '1:657263501096:web:a9910e5398e95263b0ba1d',
-  measurementId: 'G-0GF7G6TZ8L',
-};
-
-// Initialize Firebase
-const app = initializeApp (firebaseConfig);
-// const analytics = getAnalytics (app);
-
-//github
-const provider = new GithubAuthProvider();
-
-const githubSignin = () => {
-  const auth = getAuth();
-signInWithPopup(auth, provider)
-  .then((result) => {
-    // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-    const credential = GithubAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
-
-    // The signed-in user info.
-    const user = result.user;
-    console.log(user)
-    router.push('/dashboard')
-    // ...
-  }).catch((error) => {
-    // Handle Errors here.
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // The email of the user's account used.
-    const email = error.email;
-    // The AuthCredential type that was used.
-    const credential = GithubAuthProvider.credentialFromError(error);
-    // ...
-  });
-}
-
-
+const Home = () => {
+  const [username, setUsername] = useState ('');
+  console.log(username)
   return (
     <div className={styles.container}>
       <Head>
@@ -65,18 +17,23 @@ signInWithPopup(auth, provider)
         <h1 className={styles.title}>
           Welcome!
         </h1>
-        <button onClick={githubSignin} className={styles.btnGithub}>
-          <div className={styles.flex}>
-            <div className={styles.mr}>
-            <GitHubIcon/>
-            </div>
-            <div>
-             Sign in with Github
-
-            </div>
-          </div>
-          </button>
+        <form action="/dashboard">
+          <input
+            type="text"
+            name='username'
+            value={username}
+            onChange= {e => setUsername(e.target.value)}
+            className={styles.input}
+            placeholder="Enter Github username..."
+            required
+          />
+          <p className={styles.submit}>
+            <button type="submit">SUBMIT</button>
+          </p>
+        </form>
       </main>
     </div>
   );
-}
+};
+
+export default Home;
