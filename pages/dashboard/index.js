@@ -7,39 +7,23 @@ import CardList from '../../components/CardList';
 
 
 const Dashboard = () => {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState([])
   const router = useRouter();
   const {username} = router.query;
-  console.log (router.query.username);
-  useEffect(() => {
-      async() =>{
-          try{
-            const res = await fetch(`https://api.github.com/users/${username}`)
-            const result = res
-            
-                setUser(result)
-                console.log(result)
-          }catch(err){
-              console.log(err)
-          }
-
-      }
-  }, [username, router])
-
-  console.log(user)
-
-//avatar
-
-
-
-
+  console.log (username);
+  useEffect(async () => {
+    const res = await fetch(`https://api.github.com/users/${username}`)
+    const user = res.json()
+    .then((user) => setUser(user))
+    .catch(error => console.log(error))
+  }, [])
   return (
     <div className={ styles.dashboard}>
         <Header user={user}/>
 
         <nav className={styles.stats}>
             <div className={styles.container}>
-                <CardList/>
+                <CardList user={user}/>
             </div>
         </nav>
         <section className={styles.chartsection} >

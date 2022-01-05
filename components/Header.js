@@ -54,7 +54,7 @@ const Header = ({user}) => {
                      </div>  
                   <NotificationsOutlinedIcon/>
                   <Divider orientation="vertical" variant="middle" flexItem />
-                 <Avatar {...stringAvatar("derajohnson")}/>
+                 <Avatar alt={user.avatar_url} src={user.avatar_url}/>
 
               </div>
             </div>

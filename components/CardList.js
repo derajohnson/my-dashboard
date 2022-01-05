@@ -1,14 +1,11 @@
 import React from 'react'
 import Card from './Card'
 import styles from "../styles/Dashboard.module.css"
-const CardList = () => {
+const CardList = (user) => {
     return (
         
-            <div className={styles.cardlist}>
-               <Card />
-               <Card/>
-               <Card/>
-               <Card/>
+            <div>
+               <Card user={user}/>
                </div>
              
         
