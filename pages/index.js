@@ -27,6 +27,7 @@ const Home = () => {
             placeholder="Enter Github username..."
             required
           />
+          <br/>
           <p className={styles.submit}>
             <button type="submit">SUBMIT</button>
           </p>

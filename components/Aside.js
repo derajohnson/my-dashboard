@@ -8,12 +8,17 @@ const Aside= () => {
 
           <h1>Hello</h1>
           <nav>
-              <ul>
-              <li>Dashboard</li>
-              <li>Chats</li>
-              <li>Subscriptions</li>
+              <ul className={asideStyles.ul}>
+              <li><Link href= '/dashboard'><a>Dashboard</a></Link></li>
+              <li><Link href= '/dashboard/chats'><a>Chats</a></Link></li>
+              <li><Link href = '/blogs'><a>Blogs</a></Link></li>
+              <li><Link href = '/blogs'><a>Message</a></Link></li>
+              <li><Link href = '/blogs'><a>Users</a></Link></li>
+              <li><Link href = '/blogs'><a>Settings</a></Link></li>
+              <li><Link href = '/blogs'><a>Log Out</a></Link></li>
               </ul>
           </nav>
+          <button>New Post</button>
         </div>
     </div>
     )
